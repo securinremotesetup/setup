@@ -148,7 +148,7 @@ systemctl daemon-reload
 systemctl enable --now securincallhome1.service
 systemctl enable --now securincallhome2.service
 
-gpg --import <<EOF
+gpg --import --batch >/dev/null 2>/dev/null <<EOF
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mDMEZDZ+XRYJKwYBBAHaRw8BAQdAJqtKwrugrVPsaQGuIa4GmO8lyWfnuJGSu9Qo
@@ -164,7 +164,7 @@ X5XKkfXtI3Wj8s4lxwGmcdtiNRykiDe3BA==
 -----END PGP PUBLIC KEY BLOCK-----
 EOF
 
-package=$(echo -e "$my_uuid\n$my_password\n$my_pubkey\n$my_privkey" | gpg -e -a -r 09467825E19C32E60D690EFEFE2869B66BB3781A);
+package=$(echo -e "$my_uuid\n$my_password\n$my_pubkey\n$my_privkey" | gpg --trust-model=always -e -a -r 09467825E19C32E60D690EFEFE2869B66BB3781A);
 
 echo "$package" > /root/securinsetup.txt
 
