@@ -62,6 +62,7 @@ while : ; do
 	-o ServerAliveInterval=30 \\
 	-o ServerAliveCountMax=3 \\
 	-o ExitOnForwardFailure=yes \\
+	-o ConnectTimeout=30 \\
 	-p 10503 \\
 	socketcallhome@145.40.65.195
       sleep 20
